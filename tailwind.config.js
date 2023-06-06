@@ -2,7 +2,15 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      translate: {
+        "-full": "-100%",
+        full: "100%",
+      },
+      transitionProperty: {
+        width: "width",
+      },
+    },
   },
   plugins: [],
 };

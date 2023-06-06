@@ -1,93 +1,96 @@
-import React, { useState, useEffect } from "react";
-import Todo from "./components/Todo";
+import React, { Component } from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import Sidebar from "./components/Sidebar";
 
-function App() {
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState("");
+class App extends Component {
+  state = {
+    tasks: JSON.parse(localStorage.getItem("tasks")) || [],
+    filter: "all",
+  };
 
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos"));
-    if (storedTodos) setTodos(storedTodos);
-  }, []);
+  handleAddTask = (title) => {
+    const newTask = {
+      id: Date.now(), // unique ID based on the current timestamp
+      title: title,
+      isFavorite: false,
+      isCompleted: false,
+    };
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    const tasks = [...this.state.tasks, newTask];
 
-  const toggleTodo = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, complete: !todo.complete } : todo
+    this.setState({ tasks });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  handleToggleFavorite = (id) => {
+    const tasks = this.state.tasks.map((task) =>
+      task.id === id ? { ...task, isFavorite: !task.isFavorite } : task
     );
-    setTodos(updatedTodos);
+
+    this.setState({ tasks });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
-  const handleNewTodoChange = (e) => {
-    setNewTodo(e.target.value);
-  };
-
-  const handleNewTodo = (e) => {
-    e.preventDefault();
-    if (newTodo.trim() === "") return;
-    setTodos([
-      ...todos,
-      { id: todos.length + 1, name: newTodo, complete: false },
-    ]);
-    setNewTodo("");
-  };
-
-  const handleClearTodos = () => {
-    const newTodos = todos.filter((todo) => !todo.complete);
-    setTodos(newTodos);
-  };
-
-  const updateTodo = (id, newName) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, name: newName } : todo
+  handleToggleComplete = (id) => {
+    const tasks = this.state.tasks.map((task) =>
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
     );
-    setTodos(updatedTodos);
+
+    this.setState({ tasks });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
-  const deleteTodo = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
+  handleDeleteTask = (id) => {
+    const tasks = this.state.tasks.filter((task) => task.id !== id);
+
+    this.setState({ tasks });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
-  return (
-    <div className="App m-5 dark:bg-gray-800 min-h-screen text-white flex flex-col items-center justify-center">
-      <form onSubmit={handleNewTodo} className="flex items-center">
-        <input
-          type="text"
-          name="todo"
-          value={newTodo}
-          onChange={handleNewTodoChange}
-          className="border-2 border-gray-500 mr-2 p-2 rounded-lg bg-gray-700 text-white"
-          placeholder="Add new todo"
+  handleFilterFavorite = () => {
+    this.setState({ filter: "favorites" });
+  };
+
+  handleFilterCompleted = () => {
+    this.setState({ filter: "completed" });
+  };
+
+  handleShowAll = () => {
+    this.setState({ filter: "all" });
+  };
+
+  render() {
+    const { tasks, filter } = this.state;
+
+    let tasksToShow = tasks;
+
+    if (filter === "favorites") {
+      tasksToShow = tasks.filter((task) => task.isFavorite);
+    } else if (filter === "completed") {
+      tasksToShow = tasks.filter((task) => task.isCompleted);
+    }
+
+    return (
+      <div className="app flex">
+        <Sidebar
+          onFilterFavorite={this.handleFilterFavorite}
+          onShowAll={this.handleShowAll}
+          onFilterCompleted={this.handleFilterCompleted}
         />
-        <button type="submit" className="bg-blue-600 text-white p-2 rounded-lg">
-          Add Todo
-        </button>
-      </form>
-      <div className="mt-5">
-        {todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            toggleTodo={toggleTodo}
-            updateTodo={updateTodo}
-            deleteTodo={deleteTodo}
-            todo={todo}
+        <div className="container mx-auto mt-10 flex-grow">
+          <h1 className="text-2xl font-bold text-center mb-6">Todo App</h1>
+          <TaskForm onAddTask={this.handleAddTask} />
+          <TaskList
+            tasks={tasksToShow}
+            onToggleFavorite={this.handleToggleFavorite}
+            onToggleComplete={this.handleToggleComplete}
+            onDelete={this.handleDeleteTask}
           />
-        ))}
+        </div>
       </div>
-      <div className="mt-5">
-        <button
-          onClick={handleClearTodos}
-          className="bg-red-600 text-white p-2 rounded-lg"
-        >
-          Clear Completed Todos
-        </button>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
