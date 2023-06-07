@@ -15,7 +15,7 @@ class Task extends Component {
 
     return (
       <div
-        className={`task flex items-center justify-between p-4 bg-white shadow rounded mt-2 ${
+        className={`task flex flex-row items-center justify-between p-4 bg-white shadow rounded mt-2 ${
           isCompleted ? "task-completed" : ""
         }`}
       >
@@ -32,7 +32,7 @@ class Task extends Component {
             {title}
           </span>
         </div>
-        <div>
+        <div className="flex flex-row items-center lg:flex-row">
           <button
             onClick={() => onToggleFavorite(id)}
             className={`p-2 mr-2 rounded hover:bg-gray-200 transition ${

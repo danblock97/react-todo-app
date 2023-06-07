@@ -72,13 +72,13 @@ class App extends Component {
     }
 
     return (
-      <div className="app flex">
+      <div className="app lg:flex justify-center items-center">
         <Sidebar
           onFilterFavorite={this.handleFilterFavorite}
           onShowAll={this.handleShowAll}
           onFilterCompleted={this.handleFilterCompleted}
         />
-        <div className="container mx-auto mt-10 flex-grow">
+        <div className="container mx-auto mt-10 flex-grow overflow-auto lg:overflow-visible text-center">
           <h1 className="text-2xl font-bold text-center mb-6">Todo App</h1>
           <TaskForm onAddTask={this.handleAddTask} />
           <TaskList

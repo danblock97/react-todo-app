@@ -18,7 +18,7 @@ class TaskForm extends Component {
   render() {
     return (
       <form
-        className="task-form flex items-center"
+        className="task-form flex flex-col gap-2 items-stretch lg:flex-row"
         onSubmit={this.handleSubmit}
       >
         <input
@@ -26,11 +26,11 @@ class TaskForm extends Component {
           value={this.state.title}
           onChange={this.handleChange}
           placeholder="Enter task title..."
-          className="flex-grow p-2 border rounded mr-2"
+          className="flex-grow p-2 border rounded"
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition flex items-center justify-center"
         >
           Add Task
         </button>

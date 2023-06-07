@@ -5,7 +5,7 @@ import { AiFillStar } from "react-icons/ai";
 
 const Sidebar = ({ onFilterFavorite, onShowAll, onFilterCompleted }) => {
   return (
-    <div className="sidebar w-64 h-screen bg-gray-100 p-6 shadow-lg">
+    <div className="sidebar fixed bottom-0 w-full h-auto p-4 lg:w-64 lg:h-screen lg:static bg-gray-100 shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Filters</h2>
       <div
         className="all-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition mt-2"
