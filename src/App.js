@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import Sidebar from "./components/Sidebar";
+import TaskPieChart from "./components/TaskPieChart";
 
 class App extends Component {
   state = {
@@ -87,6 +88,7 @@ class App extends Component {
             onToggleComplete={this.handleToggleComplete}
             onDelete={this.handleDeleteTask}
           />
+          <TaskPieChart tasks={tasksToShow} />
         </div>
       </div>
     );
