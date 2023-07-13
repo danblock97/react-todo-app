@@ -80,7 +80,7 @@ class App extends Component {
           onShowAll={this.handleShowAll}
           onFilterCompleted={this.handleFilterCompleted}
         />
-        <div className="container mx-auto mt-10 flex-grow overflow-auto lg:overflow-visible text-center">
+        <div className="container mx-auto mt-10 flex-grow overflow-auto lg:overflow-visible text-center relative">
           <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">
             TuDou | Make Tasks Fun
           </h1>
@@ -92,7 +92,7 @@ class App extends Component {
             onDelete={this.handleDeleteTask}
           />
           <TaskPieChart tasks={tasksToShow} />
-          <div className="absolute bottom-0 right-0 overflow-hidden pr-6 lg:pr-0 lg:relative">
+          <div className="absolute bottom-0 right-0 overflow-hidden pr-6 lg:pr-0">
             <Switcher />
           </div>
         </div>
