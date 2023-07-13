@@ -3,6 +3,7 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import Sidebar from "./components/Sidebar";
 import TaskPieChart from "./components/TaskPieChart";
+import Switcher from "./components/Switcher";
 
 class App extends Component {
   state = {
@@ -73,14 +74,14 @@ class App extends Component {
     }
 
     return (
-      <div className="app lg:flex justify-center items-center">
+      <div className="app lg:flex justify-center items-center dark:bg-black/90 dark:min-h-screen overflow-hidden">
         <Sidebar
           onFilterFavorite={this.handleFilterFavorite}
           onShowAll={this.handleShowAll}
           onFilterCompleted={this.handleFilterCompleted}
         />
         <div className="container mx-auto mt-10 flex-grow overflow-auto lg:overflow-visible text-center">
-          <h1 className="text-2xl font-bold text-center mb-6">
+          <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">
             TuDou | Make Tasks Fun
           </h1>
           <TaskForm onAddTask={this.handleAddTask} />
@@ -91,6 +92,9 @@ class App extends Component {
             onDelete={this.handleDeleteTask}
           />
           <TaskPieChart tasks={tasksToShow} />
+          <div className="absolute bottom-0 right-0 overflow-hidden pr-6 lg:pr-0 lg:relative">
+            <Switcher />
+          </div>
         </div>
       </div>
     );

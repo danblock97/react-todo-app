@@ -15,7 +15,7 @@ class Task extends Component {
 
     return (
       <div
-        className={`task flex flex-row items-center justify-between p-4 bg-white shadow rounded mt-2 ${
+        className={`task flex flex-row items-center justify-between p-4 bg-white shadow rounded mt-2 dark:bg-black ${
           isCompleted ? "task-completed" : ""
         }`}
       >
@@ -27,7 +27,9 @@ class Task extends Component {
             className="mr-2"
           />
           <span
-            className={`text-gray-800 ${isCompleted ? "line-through" : ""}`}
+            className={`text-gray-800 dark:text-white ${
+              isCompleted ? "line-through" : ""
+            }`}
           >
             {title}
           </span>
@@ -35,7 +37,7 @@ class Task extends Component {
         <div className="flex flex-row items-center lg:flex-row">
           <button
             onClick={() => onToggleFavorite(id)}
-            className={`p-2 mr-2 rounded hover:bg-gray-200 transition ${
+            className={`p-2 mr-2 rounded hover:bg-gray-200 transition dark:text-white dark:hover:bg-gray-700 ${
               isFavorite ? "text-red-600" : "text-gray-500"
             }`}
           >
@@ -43,7 +45,7 @@ class Task extends Component {
           </button>
           <button
             onClick={() => onDelete(id)}
-            className="p-2 rounded hover:bg-gray-200 transition text-gray-500"
+            className="p-2 rounded hover:bg-gray-200 transition text-gray-500 dark:text-white dark:hover:bg-gray-700"
           >
             Delete
           </button>

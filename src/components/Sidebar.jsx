@@ -23,30 +23,30 @@ const Sidebar = ({ onFilterFavorite, onShowAll, onFilterCompleted }) => {
         )}
       </button>
       <div
-        className={`sidebar fixed h-screen top-0 left-0 bottom-0 w-full lg:w-64 p-4 lg:sticky bg-gray-100 shadow-lg ${
+        className={`sidebar fixed h-screen top-0 left-0 bottom-0 w-full lg:w-64 p-4 lg:sticky bg-gray-100 dark:bg-black/80 shadow-lg ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } lg:translate-x-0`}
       >
-        <h2 className="text-2xl font-bold mb-4">Filters</h2>
+        <h2 className="text-2xl font-bold mb-4 dark:text-white">Filters</h2>
         <div
-          className="all-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition mt-2"
+          className="all-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition mt-2 dark:text-white dark:hover:bg-gray-700"
           onClick={onShowAll}
         >
-          <RiHeartFill className="inline-block mr-2" />
+          <RiHeartFill className="inline-block mr-2 dark:text-white dark:hover:bg-gray-700" />
           Show All
         </div>
         <div
-          className="favorite-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition"
+          className="favorite-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition dark:text-white dark:hover:bg-gray-700"
           onClick={onFilterFavorite}
         >
-          <AiFillStar className="inline-block mr-2" />
+          <AiFillStar className="inline-block mr-2 dark:text-white" />
           Favorites
         </div>
         <div
-          className="completed-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition"
+          className="completed-filter cursor-pointer hover:bg-gray-200 p-2 rounded transition dark:text-white dark:hover:bg-gray-700"
           onClick={onFilterCompleted}
         >
-          <TiTick className="inline-block mr-2" />
+          <TiTick className="inline-block mr-2 dark:text-white" />
           Completed
         </div>
       </div>

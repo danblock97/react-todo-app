@@ -26,7 +26,7 @@ class TaskForm extends Component {
           value={this.state.title}
           onChange={this.handleChange}
           placeholder="Enter task title..."
-          className="flex-grow p-2 border rounded"
+          className="flex-grow p-2 border rounded dark:bg-black dark:border-hidden dark:text-white"
         />
         <button
           type="submit"
