@@ -13,9 +13,9 @@ class TaskList extends Component {
             id={task.id}
             title={task.title}
             isFavorite={task.isFavorite}
-            isCompleted={task.isCompleted} // Pass the isCompleted prop
+            isCompleted={task.isCompleted}
             onToggleFavorite={onToggleFavorite}
-            onToggleComplete={onToggleComplete} // Pass the onToggleComplete prop
+            onToggleComplete={onToggleComplete}
             onDelete={onDelete}
           />
         ))}

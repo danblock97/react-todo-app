@@ -12,7 +12,7 @@ class App extends Component {
 
   handleAddTask = (title) => {
     const newTask = {
-      id: Date.now(), // unique ID based on the current timestamp
+      id: Date.now(),
       title: title,
       isFavorite: false,
       isCompleted: false,
@@ -80,7 +80,9 @@ class App extends Component {
           onFilterCompleted={this.handleFilterCompleted}
         />
         <div className="container mx-auto mt-10 flex-grow overflow-auto lg:overflow-visible text-center">
-          <h1 className="text-2xl font-bold text-center mb-6">Todo App</h1>
+          <h1 className="text-2xl font-bold text-center mb-6">
+            TuDou | Make Tasks Fun
+          </h1>
           <TaskForm onAddTask={this.handleAddTask} />
           <TaskList
             tasks={tasksToShow}
